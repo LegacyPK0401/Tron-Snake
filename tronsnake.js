@@ -96,6 +96,7 @@ function update() {
   checkHitWall()
 }
 
+//makes sure tron doesn't get sent to the backroom and does get derezzed.
 function checkHitWall(){
   var headTail = tron.tail[tron.tail.length -1]
   if(headTail.x == - tron.size) {
@@ -109,6 +110,7 @@ function checkHitWall(){
   }
 }
 
+//what happens what tron gets a disc
 function eatIdenDisc(){
   if(tron.tail[tron.tail.length - 1].x == light.x &&
       tron.tail[tron.tail.length - 1].y == light.y){
@@ -125,10 +127,16 @@ function draw() {
       tron.size - 5, tron.size- 5, 'teal')
     }
 
+  //score card
   canvasContext.font = "20px Arial"
   canvasContext.fillStyle = "#00FF42"
   canvasContext.fillText("Score: " + (tron.tail.length + 1), canvas.width - 120, 18);
   createRect(light.x, light.y, light.size , light.size, light.color)
+
+  //message
+  canvasContext.font = "20px Monospace"
+  canvasContext.fillstyle = "#82dafa"
+  canvasContext.fillText("Tron Lives", canvas.width -  250, 18);
 }
 
 function createRect(x, y, width, height, color){
@@ -136,6 +144,7 @@ function createRect(x, y, width, height, color){
   canvasContext.fillRect(x, y, width, height)
 }
 
+//input of key strokes
 window.addEventListener("keydown", (event)=>{
   setTimeout(()=>{
     if(event.keyCode == 37 && tron.rotateX != 1){
